@@ -51,6 +51,14 @@
             margin-top: 10px; /* Espaçamento superior */
         }
 
+        /* Botão "Ir NostalgicViews" */
+        .go-button {
+            background-color: transparent;
+            border: none;
+            font-size: 18px; /* Tamanho do texto do botão */
+            cursor: pointer;
+        }
+
         /* Botão de configurações */
         .settings-button {
             position: fixed;
@@ -85,8 +93,9 @@
 </head>
 <body>
     <div class="container">
+        <!-- Botão "Ir NostalgicViews" -->
+        <button class="go-button" onclick="window.location.href='file:///E:/NostalgicMask/NostalgicViews/index2.html'">Ir NostalgicViews</button>
         <h1 class="title">NostalgicMask</h1>
-        <button id="settingsButton" class="settings-button">Configurações</button> <!-- Botão de configurações -->
         <div class="search-container">
             <input type="text" class="search-bar" id="searchInput" placeholder="Pesquisar...">
         </div>
@@ -94,6 +103,7 @@
     <a href="https://www.1001jogos.com.br/" class="link-text">Jogos Grátis</a>
 
     <!-- Painel de configurações -->
+    <button id="settingsButton" class="settings-button">Configurações</button> <!-- Botão de configurações -->
     <div id="settingsPanel" class="settings-panel">
         <div class="settings-panel-item" id="toggleDarkMode">Modo Escuro</div>
         <div class="settings-panel-item" id="openHistory">Histórico de Pesquisa</div>
@@ -130,55 +140,54 @@
         });
 
         // Função para verificar se a string é um URL
-        function isURL(str) {
-            var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocolo
-              '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domínio
-              '((\\d{1,3}\\.){3}\\d{1,3}))'+ // IP (v4) address
-              '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // porta e caminho
-              '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-              '(\\#[-a-z\\d_]*)?$','i'); // fragmento identificador
-            return !!pattern.test(str);
-        }
+function isURL(str) {
+    var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocolo
+      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domínio
+      '((\\d{1,3}\\.){3}\\d{1,3}))'+ // IP (v4) address
+      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // porta e caminho
+      '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+      '(\\#[-a-z\\d_]*)?$','i'); // fragmento identificador
+    return !!pattern.test(str);
+}
 
-        // Captura o botão de configurações
-        const settingsButton = document.getElementById('settingsButton');
-        // Captura o painel de configurações
-        const settingsPanel = document.getElementById('settingsPanel');
-        // Captura o botão de alternar modo escuro
-        const toggleDarkModeButton = document.getElementById('toggleDarkMode');
-        // Captura o botão de abrir o histórico de pesquisa
-        const openHistoryButton = document.getElementById('openHistory');
-        // Captura o botão de cancelados
-        const cancelledButton = document.getElementById('cancelled');
+// Captura o botão de configurações
+const settingsButton = document.getElementById('settingsButton');
+// Captura o painel de configurações
+const settingsPanel = document.getElementById('settingsPanel');
+// Captura o botão de alternar modo escuro
+const toggleDarkModeButton = document.getElementById('toggleDarkMode');
+// Captura o botão de abrir o histórico de pesquisa
+const openHistoryButton = document.getElementById('openHistory');
+// Captura o botão de cancelados
+const cancelledButton = document.getElementById('cancelled');
 
-        // Adiciona um ouvinte de evento para o botão de configurações
-        settingsButton.addEventListener('click', () => {
-            // Alternar a visibilidade do painel de configurações
-            if (settingsPanel.style.display === "block") {
-                settingsPanel.style.display = "none";
-            } else {
-                settingsPanel.style.display = "block";
-            }
-        });
+// Adiciona um ouvinte de evento para o botão de configurações
+settingsButton.addEventListener('click', () => {
+    // Alternar a visibilidade do painel de configurações
+    if (settingsPanel.style.display === "block") {
+        settingsPanel.style.display = "none";
+    } else {
+        settingsPanel.style.display = "block";
+    }
+});
 
-        // Adiciona um ouvinte de evento para o botão de alternar modo escuro
-        toggleDarkModeButton.addEventListener('click', () => {
-            // Redirecionar para a página de modo escuro
-            window.location.href = "NostalgicDark.html";
-        });
+// Adiciona um ouvinte de evento para o botão de alternar modo escuro
+toggleDarkModeButton.addEventListener('click', () => {
+    // Redirecionar para a página de modo escuro
+    window.location.href = "NostalgicDark.html";
+});
 
-        // Adiciona um ouvinte de evento para o botão de abrir o histórico de pesquisa
-        openHistoryButton.addEventListener('click', () => {
-            // Redirecionar para a página de histórico de pesquisa
-            window.location.href = "Historico.html";
-        });
+// Adiciona um ouvinte de evento para o botão de abrir o histórico de pesquisa
+openHistoryButton.addEventListener('click', () => {
+    // Redirecionar para a página de histórico de pesquisa
+    window.location.href = "Historico.html";
+});
 
-        // Adiciona um ouvinte de evento para o botão de cancelados
-        cancelledButton.addEventListener('click', () => {
-            // Redirecionar para a página de recursos cancelados
-            window.location.href = "Cancelados.html";
-        });
-    </script>
+// Adiciona um ouvinte de evento para o botão de cancelados
+cancelledButton.addEventListener('click', () => {
+    // Redirecionar para a página de recursos cancelados
+    window.location.href = "Cancelados.html";
+});
+</script>
 </body>
 </html>
-
