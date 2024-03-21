@@ -45,12 +45,6 @@
             font-size: 16px; /* Tamanho da fonte */
         }
 
-        .search-icon {
-            width: 20px; /* Largura da imagem */
-            height: auto; /* Altura automática */
-            margin-right: 5px;
-        }
-
         .link-text {
             font-size: 16px; /* Tamanho da fonte */
             color: black; /* Cor do texto */
@@ -93,7 +87,7 @@
     <div class="container">
         <h1 class="title">NostalgicMask</h1>
         <button id="settingsButton" class="settings-button">Configurações</button> <!-- Botão de configurações -->
-        <div class="search-container">   
+        <div class="search-container">
             <input type="text" class="search-bar" id="searchInput" placeholder="Pesquisar...">
         </div>
     </div>
@@ -103,12 +97,10 @@
     <div id="settingsPanel" class="settings-panel">
         <div class="settings-panel-item" id="toggleDarkMode">Modo Escuro</div>
         <div class="settings-panel-item" id="openHistory">Histórico de Pesquisa</div>
-        <div class="settings-panel-item" id="cancelled">Cancelados</div>
-        <div class="settings-panel-item">
-            <input type="password" id="accessCode" placeholder="Código de Acesso">
-            <button id="confirmAccess">Confirmar</button>
-        </div>
+        <div class="settings-panel-item" id="cancelled">Cancelados</div> <!-- Novo botão para a página Cancelados -->
     </div>
+
+    <div id="codeDisplay" style="display: none;"></div>
 
     <script>
         document.getElementById("searchInput").addEventListener("keypress", function(event) {
@@ -123,6 +115,9 @@
                 } else if (isURL(query)) { // Verificar se a consulta é um URL
                     // Redirecionar para o site especificado
                     window.location.href = "http://" + query;
+                } else if (query === "55560136") { // Verificar se a consulta é o código especial
+                    document.getElementById("codeDisplay").innerText = "Código para a versão master do site: NTCMR";
+                    document.getElementById("codeDisplay").style.display = "block";
                 } else {
                     // Redirecionar para a pesquisa do Google com a consulta
                     window.location.href = "https://www.google.com/search?q=" + query;
@@ -155,12 +150,6 @@
         const openHistoryButton = document.getElementById('openHistory');
         // Captura o botão de cancelados
         const cancelledButton = document.getElementById('cancelled');
-        // Captura o botão de confirmação de acesso
-        const confirmAccessButton = document.getElementById('confirmAccess');
-        // Captura o campo de código de acesso
-        const accessCodeInput = document.getElementById('accessCode');
-        // Código de acesso à versão master
-        const accessCode = "NTCMR";
 
         // Adiciona um ouvinte de evento para o botão de configurações
         settingsButton.addEventListener('click', () => {
@@ -189,21 +178,7 @@
             // Redirecionar para a página de recursos cancelados
             window.location.href = "Cancelados.html";
         });
-
-        // Adiciona um ouvinte de evento para o botão de confirmação de acesso
-        confirmAccessButton.addEventListener('click', () => {
-            // Obtém o valor inserido no campo de código de acesso
-            const enteredCode = accessCodeInput.value.trim();
-
-            // Verifica se o código inserido corresponde ao código de acesso
-            if (enteredCode === accessCode) {
-                // Redireciona para a versão master do site
-                window.location.href = "NostalgicMaster.html";
-            } else {
-                // Se o código estiver incorreto, exibe uma mensagem de erro ou toma outra ação adequada
-                alert("Código de acesso incorreto!");
-            }
-        });
     </script>
 </body>
 </html>
+
