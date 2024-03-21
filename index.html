@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NostalgicMask</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding-top: 50px; /* Espaçamento superior */
+            margin: 0; /* Remover margens padrão do corpo */
+            text-align: center; /* Centralizar texto */
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column; /* Ajuste para empilhar os elementos verticalmente */
+            align-items: center;
+            width: 80%;
+            margin: 0 auto; /* Centralizar horizontalmente */
+        }
+
+        .title {
+            font-size: 36px; /* Tamanho da fonte do título */
+            margin-bottom: 20px; /* Espaçamento inferior */
+        }
+
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            border: 1px solid #000; /* Borda simples */
+            border-radius: 5px; /* Borda arredondada */
+            max-width: 400px; /* Largura máxima da barra de pesquisa */
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+            margin-bottom: 10px; /* Espaçamento inferior */
+        }
+
+        .search-bar {
+            width: 100%;
+            border: none;
+            outline: none;
+            font-size: 16px; /* Tamanho da fonte */
+        }
+
+        .search-icon {
+            width: 20px; /* Largura da imagem */
+            height: auto; /* Altura automática */
+            margin-right: 5px;
+        }
+
+        .link-text {
+            font-size: 16px; /* Tamanho da fonte */
+            color: black; /* Cor do texto */
+            margin-top: 10px; /* Espaçamento superior */
+        }
+
+        /* Botão de configurações */
+        .settings-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #333;
+        }
+
+        /* Painel de configurações */
+        .settings-panel {
+            display: none;
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            padding: 10px;
+            z-index: 1;
+        }
+
+        /* Estilo para os itens do painel de configurações */
+        .settings-panel-item {
+            padding: 5px 0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">NostalgicMask</h1>
+        <button id="settingsButton" class="settings-button">Configurações</button> <!-- Botão de configurações -->
+        <div class="search-container">
+            <img src="https://cdn.discordapp.com/attachments/1163193378314395670/1203075025905786880/png-clipart-computer-icons-internet-globe-icon-text-logo-removebg-preview.png?ex=65cfc5ee&is=65bd50ee&hm=88b1d633b6098b24c87a29410dc474ce177610de5e7b715da648298ec061cd11" alt="Ícone de Pesquisa" class="search-icon">
+            <input type="text" class="search-bar" id="searchInput" placeholder="Pesquisar...">
+        </div>
+    </div>
+    <a href="https://www.1001jogos.com.br/" class="link-text">Jogos Grátis</a>
+
+    <!-- Painel de configurações -->
+    <div id="settingsPanel" class="settings-panel">
+        <div class="settings-panel-item" id="toggleDarkMode">Modo Escuro</div>
+        <div class="settings-panel-item" id="openHistory">Histórico de Pesquisa</div>
+        <div class="settings-panel-item" id="cancelled">Cancelados</div>
+        <div class="settings-panel-item">
+            <input type="password" id="accessCode" placeholder="Código de Acesso">
+            <button id="confirmAccess">Confirmar</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("searchInput").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                // Obter o valor da barra de pesquisa
+                var query = document.getElementById("searchInput").value.toLowerCase();
+
+                // Verificar se a consulta é por "minecraft grátis"
+                if (query === "minecraft grátis") {
+                    // Redirecionar para a página EsperaAi
+                    window.location.href = "EsperaAi.html";
+                } else if (isURL(query)) { // Verificar se a consulta é um URL
+                    // Redirecionar para o site especificado
+                    window.location.href = "http://" + query;
+                } else {
+                    // Redirecionar para a pesquisa do Google com a consulta
+                    window.location.href = "https://www.google.com/search?q=" + query;
+                }
+                // Limpar a barra de pesquisa
+                document.getElementById("searchInput").value = "";
+                // Impedir o comportamento padrão do formulário de enviar
+                event.preventDefault();
+            }
+        });
+
+        // Função para verificar se a string é um URL
+        function isURL(str) {
+            var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocolo
+              '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domínio
+              '((\\d{1,3}\\.){3}\\d{1,3}))'+ // IP (v4) address
+              '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // porta e caminho
+              '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+              '(\\#[-a-z\\d_]*)?$','i'); // fragmento identificador
+            return !!pattern.test(str);
+        }
+
+        // Captura o botão de configurações
+        const settingsButton = document.getElementById('settingsButton');
+        // Captura o painel de configurações
+        const settingsPanel = document.getElementById('settingsPanel');
+        // Captura o botão de alternar modo escuro
+        const toggleDarkModeButton = document.getElementById('toggleDarkMode');
+        // Captura o botão de abrir o histórico de pesquisa
+        const openHistoryButton = document.getElementById('openHistory');
+        // Captura o botão de cancelados
+        const cancelledButton = document.getElementById('cancelled');
+        // Captura o botão de confirmação de acesso
+        const confirmAccessButton = document.getElementById('confirmAccess');
+        // Captura o campo de código de acesso
+        const accessCodeInput = document.getElementById('accessCode');
+        // Código de acesso à versão master
+        const accessCode = "NTCMR";
+
+        // Adiciona um ouvinte de evento para o botão de configurações
+        settingsButton.addEventListener('click', () => {
+            // Alternar a visibilidade do painel de configurações
+            if (settingsPanel.style.display === "block") {
+                settingsPanel.style.display = "none";
+            } else {
+                settingsPanel.style.display = "block";
+            }
+        });
+
+        // Adiciona um ouvinte de evento para o botão de alternar modo escuro
+        toggleDarkModeButton.addEventListener('click', () => {
+            // Redirecionar para a página de modo escuro
+            window.location.href = "NostalgicDark.html";
+        });
+
+        // Adiciona um ouvinte de evento para o botão de abrir o histórico de pesquisa
+        openHistoryButton.addEventListener('click', () => {
+            // Redirecionar para a página de histórico de pesquisa
+            window.location.href = "Historico.html";
+        });
+
+        // Adiciona um ouvinte de evento para o botão de cancelados
+        cancelledButton.addEventListener('click', () => {
+            // Redirecionar para a página de recursos cancelados
+            window.location.href = "Cancelados.html";
+        });
+
+        // Adiciona um ouvinte de evento para o botão de confirmação de acesso
+        confirmAccessButton.addEventListener('click', () => {
+            // Obtém o valor inserido no campo de código de acesso
+            const enteredCode = accessCodeInput.value.trim();
+
+            // Verifica se o código inserido corresponde ao código de acesso
+            if (enteredCode === accessCode) {
+                // Redireciona para a versão master do site
+                window.location.href = "NostalgicMaster.html";
+            } else {
+                // Se o código estiver incorreto, exibe uma mensagem de erro ou toma outra ação adequada
+                alert("Código de acesso incorreto!");
+            }
+        });
+    </script>
+</body>
+</html>
