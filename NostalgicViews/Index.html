@@ -37,6 +37,26 @@
             text-align: center; /* Alinhar ao centro */
             color: #999; /* Cor do texto cinza */
         }
+
+        .video-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .video-item {
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            flex: 0 1 calc(50% - 10px); /* 50% do container com espaço entre os itens */
+        }
+
+        .video-item video {
+            width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -52,5 +72,29 @@
 
     <!-- Aviso -->
     <p class="aviso">Por enquanto, não há um email oficial do site.</p>
-</body>
-</html>
+
+    <!-- Container de vídeos -->
+    <div class="video-container">
+      <!-- Template de vídeo 1 -->
+<div class="video-item">
+    <!-- Vídeo 1 -->
+    <iframe width="560" height="315" src="URL_DO_VIDEO_1" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<!-- Template de vídeo 2 -->
+<div class="video-item">
+    <!-- Vídeo 2 -->
+    <iframe width="560" height="315" src="URL_DO_VIDEO_2" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<!-- Template de vídeo 3 -->
+<div class="video-item">
+    <!-- Vídeo 3 -->
+    <iframe width="560" height="315" src="URL_DO_VIDEO_3" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<!-- Template de vídeo 4 -->
+<div class="video-item">
+    <!-- Vídeo 4 -->
+    <iframe width="560" height="315" src="URL_DO_VIDEO_4" frameborder="0" allowfullscreen></iframe>
+</div>
